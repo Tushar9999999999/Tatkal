@@ -1,2 +1,5 @@
 streamlit
-google-cloud-firestore
+google-cloud-firestore==2.0.0
+google-auth==2.6.0
+google-api-core==2.6.0
+protobuf==3.19.4
