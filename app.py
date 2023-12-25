@@ -1,5 +1,5 @@
 import streamlit as st
-from google.cloud import firestore
+#from google.cloud import firestore
 from display import display
 from add_data import add_data 
 
