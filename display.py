@@ -6,7 +6,7 @@ from google.cloud import firestore
 from google.auth.credentials import AnonymousCredentials
 from dotenv import load_dotenv
 
-load_dotenv()
+#load_dotenv()
 
 firebase_credentials_b64 = os.getenv("FIREBASE_SERVICE_ACCOUNT_JSON")
 
