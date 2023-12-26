@@ -6,18 +6,10 @@ from google.cloud import firestore
 from google.auth.credentials import AnonymousCredentials
 from dotenv import load_dotenv
 
-#load_dotenv()
-
-firebase_credentials_b64 = os.getenv("FIREBASE_SERVICE_ACCOUNT_JSON")
-
-if firebase_credentials_b64:
-    firebase_credentials_json = base64.b64decode(firebase_credentials_b64).decode('utf-8')
-    firebase_credentials = json.loads(firebase_credentials_json)
-else:
-    st.warning("Firebase service account JSON not provided. Check your environment variables.")
-    st.stop()
-
-db = firestore.Client.from_service_account_info(firebase_credentials) if firebase_credentials else firestore.Client(credentials=AnonymousCredentials())
+firebase_service_account_json = st.secrets["firebase"]["service_account_json"]
+firebase_service_account = json.loads(firebase_service_account_json)
+    
+db = firestore.Client.from_service_account_info(firebase_service_account) 
 
 def get_firestore_data():
     data_ref = db.collection("data")
