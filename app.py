@@ -4,10 +4,10 @@ from add_data import add_data
 
 def main():
     st.set_page_config(
-        page_title="Tatkal Excel",
-        page_icon="💉",
+        page_title="Tatkal",
+        page_icon="📋",
     )
-    st.title("Tatkal Excel")
+    st.title("Tatkal")
 
     menu = ["Display", "Add data"]
     choice = st.sidebar.selectbox("Nav", menu)
