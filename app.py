@@ -17,7 +17,7 @@ def main():
     
     if not st.session_state.authenticated:
         login()  # Display login page
-    if True:
+    else:
         # Display other pages only if authenticated
         menu = ["Display", "Add data", "Edit data"]
         choice = st.sidebar.selectbox("Nav", menu)
