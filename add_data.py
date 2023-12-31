@@ -18,7 +18,7 @@ def add_data_to_firestore(data):
     st.success("Data added to Firestore successfully.")
 
 def add_data():
-    st.header("Firestore Data Uploader")
+    st.header("Data Uploader")
 
     uploaded_file = st.file_uploader("Upload Excel File", type=["xlsx", "xls"])
 
