@@ -50,8 +50,21 @@ def edit_data_helper(selected_consumer, selected_column, new_data):
         st.success(f"Data for {selected_consumer} in {selected_column} column edited successfully.")
     except Exception as e:
         st.error(f"Error editing data: {e}")
+        
+def delete_row(selected_consumer):
+    try:
+        data_ref = db.collection("data")
+        query = data_ref.where("`Consumer Name`", "==", selected_consumer).limit(1)
+        docs = query.stream()
 
-# Main Streamlit app
+        for doc in docs:
+            doc_ref = data_ref.document(doc.id)
+            doc_ref.delete()
+
+        st.success(f"Row for {selected_consumer} deleted successfully.")
+    except Exception as e:
+        st.error(f"Error deleting row: {e}")
+
 def edit_data():
     st.title("Edit Consumer Data")
 
@@ -61,3 +74,6 @@ def edit_data():
 
     if st.button("Edit Data"):
         edit_data_helper(selected_consumer, selected_column, new_data)
+        
+    if st.button("Delete Row"):
+        delete_row(selected_consumer)

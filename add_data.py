@@ -10,6 +10,8 @@ db = firestore.Client.from_service_account_info(firebase_service_account)
 
 def add_data_to_firestore(data):
     data_ref = db.collection("data")
+    
+    data = data.where(pd.notna(data), None)
 
     data_dict_list = data.to_dict(orient='records')
     for data_dict in data_dict_list:
