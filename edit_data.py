@@ -64,6 +64,19 @@ def delete_row(selected_consumer):
         st.success(f"Row for {selected_consumer} deleted successfully.")
     except Exception as e:
         st.error(f"Error deleting row: {e}")
+        
+def delete_all_rows():
+    try:
+        data_ref = db.collection("data")
+        docs = data_ref.stream()
+
+        for doc in docs:
+            doc_ref = data_ref.document(doc.id)
+            doc_ref.delete()
+
+        st.success("All rows deleted successfully.")
+    except Exception as e:
+        st.error(f"Error deleting all rows: {e}")
 
 def edit_data():
     st.title("Edit Consumer Data")
@@ -77,3 +90,6 @@ def edit_data():
         
     if st.button("Delete Row"):
         delete_row(selected_consumer)
+        
+    if st.button("Delete All Rows"):
+        delete_all_rows()
